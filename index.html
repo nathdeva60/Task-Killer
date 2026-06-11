@@ -1,0 +1,1266 @@
+<!-- TASK TRACKER 2026 — Blogger Version -->
+<!-- Step 1: Theme > Edit HTML mein jaao -->
+<!-- Step 2: Saara purana code delete karo -->
+<!-- Step 3: Yeh poora code paste karo -->
+<!-- Step 4: Save karo -->
+
+<!-- ═══════════════════════════════════
+     PROPELLERADS — Apna script yahan lagao
+     PropellerAds dashboard se site verify
+     karne ke baad script milega, ise
+     is comment ke neeche paste karo
+═══════════════════════════════════ -->
+<!-- PROPELLERADS_SCRIPT_YAHAN -->
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
+:root{--bg:#0d0d12;--card:#17171f;--card2:#1f1f2a;--border:#2a2a38;--accent:#c8f135;--purple:#7c3aed;--pink:#f472b6;--orange:#fb923c;--text:#f0f0f5;--muted:#6b7280;--red:#ef4444;--radius:16px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+
+/* Blogger body override */
+body{background:var(--bg) !important;color:var(--text) !important;font-family:'Poppins',sans-serif !important;margin:0 !important;padding:0 !important;}
+#blogger-wrap{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min-height:100vh;max-width:480px;margin:0 auto;position:relative;}
+
+/* Blogger default elements hide karo */
+.navbar-iframe, header.main, .sidebar, footer, #header, .post-body, .blog-posts, #sidebar-wrapper, #footer-wrapper, .page_nav{display:none !important;}
+#main-wrapper, #outer-wrapper, #content-wrapper, .main-inner, #layout-columns{padding:0 !important;margin:0 !important;width:100% !important;max-width:480px !important;}
+
+/* LOGIN SCREEN */
+#loginScreen{display:none;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:30px 24px;text-align:center;}
+.login-logo{font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;color:var(--accent);margin-bottom:6px;}
+.login-logo span{color:var(--text);}
+.login-sub{color:var(--muted);font-size:.9rem;margin-bottom:40px;}
+.login-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px 24px;width:100%;max-width:340px;}
+.login-title{font-size:1.1rem;font-weight:700;margin-bottom:6px;}
+.login-desc{font-size:.8rem;color:var(--muted);margin-bottom:24px;line-height:1.5;}
+.google-btn{width:100%;padding:14px;background:#fff;border:none;border-radius:12px;color:#1a1a1a;font-family:'Poppins',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;}
+.google-btn:hover{background:#f0f0f0;transform:translateY(-1px);}
+.google-btn img{width:20px;height:20px;}
+.login-features{display:flex;flex-direction:column;gap:10px;margin-top:28px;width:100%;max-width:340px;}
+.feat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;text-align:left;}
+.feat-icon{font-size:1.3rem;}
+.feat-text{font-size:.78rem;color:var(--muted);}
+.feat-text strong{color:var(--text);display:block;font-size:.82rem;}
+
+/* LOADING */
+#loadingScreen{display:none;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:16px;}
+.spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{color:var(--muted);font-size:.85rem;}
+
+/* MAIN APP */
+#app{display:none;}
+
+/* HEADER */
+header{background:var(--card);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.logo{font-family:'Space Mono',monospace;font-size:1rem;font-weight:700;color:var(--accent);}
+.logo span{color:var(--text);}
+.header-right{display:flex;align-items:center;gap:8px;}
+.streak-pill{background:linear-gradient(135deg,#f59e0b,#ef4444);padding:4px 10px;border-radius:20px;font-size:.72rem;font-weight:700;}
+.user-avatar{width:32px;height:32px;border-radius:50%;border:2px solid var(--accent);cursor:pointer;object-fit:cover;}
+.user-initials{width:32px;height:32px;border-radius:50%;border:2px solid var(--accent);background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;cursor:pointer;}
+
+/* USER MENU */
+.user-menu{position:absolute;top:58px;right:14px;background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:8px;z-index:200;min-width:180px;display:none;}
+.user-menu.open{display:block;}
+.user-menu-name{padding:8px 12px;font-size:.8rem;font-weight:600;border-bottom:1px solid var(--border);margin-bottom:4px;}
+.user-menu-email{font-size:.68rem;color:var(--muted);font-weight:400;}
+.menu-item{padding:9px 12px;font-size:.82rem;cursor:pointer;border-radius:8px;display:flex;align-items:center;gap:8px;transition:background .15s;}
+.menu-item:hover{background:var(--border);}
+.menu-item.danger{color:var(--red);}
+
+/* TABS */
+.tabs{display:flex;gap:5px;padding:11px 13px 0;overflow-x:auto;scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{padding:7px 15px;border-radius:30px;font-size:.74rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--muted);transition:all .2s;white-space:nowrap;font-family:'Poppins',sans-serif;}
+.tab.active{background:var(--accent);color:#0d0d12;border-color:var(--accent);}
+
+/* VIEWS */
+.view{display:none;padding:13px;}
+.view.active{display:block;}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+.stat-card{background:var(--card);border-radius:var(--radius);padding:11px 9px;text-align:center;border:1px solid var(--border);}
+.stat-num{font-family:'Space Mono',monospace;font-size:1.4rem;font-weight:700;color:var(--accent);line-height:1;}
+.stat-label{font-size:.62rem;color:var(--muted);margin-top:3px;}
+
+/* SECTION TITLE */
+.sec{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:8px;margin-top:14px;}
+
+/* DATE HEADER */
+.date-header{background:var(--card);border-radius:var(--radius);padding:13px 15px;margin-bottom:11px;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border);}
+.date-big{font-size:1.3rem;font-weight:800;}
+.date-sub{font-size:.72rem;color:var(--muted);}
+.today-pct{font-size:.78rem;color:var(--accent);font-weight:700;text-align:right;}
+.prog-wrap{background:var(--border);border-radius:10px;height:6px;margin-top:5px;overflow:hidden;width:85px;}
+.prog-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--purple),var(--accent));transition:width .5s ease;}
+
+/* TASK CARD */
+.task-card{background:var(--card);border-radius:var(--radius);padding:12px 13px;margin-bottom:8px;border:1px solid var(--border);display:flex;align-items:center;gap:11px;transition:transform .15s;}
+.task-card:active{transform:scale(.98);}
+.h-emoji{font-size:1.4rem;flex-shrink:0;}
+.h-info{flex:1;min-width:0;}
+.h-name{font-size:.86rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.h-meta{font-size:.66rem;color:var(--muted);margin-top:1px;}
+.week-dots{display:flex;gap:3px;margin-top:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--border);}
+.dot.done{background:var(--accent);}
+.dot.miss{background:var(--red);opacity:.4;}
+.h-right{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;}
+.h-streak{font-size:.68rem;font-weight:700;color:#f59e0b;}
+.check-btn{width:34px;height:34px;border-radius:50%;border:2px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.95rem;transition:all .2s;color:var(--muted);}
+.check-btn.done{background:var(--accent);border-color:var(--accent);color:#0d0d12;}
+.edit-btn{width:26px;height:26px;border-radius:7px;border:1px solid var(--border);background:transparent;cursor:pointer;font-size:.7rem;color:var(--muted);transition:all .2s;}
+
+/* ADD BUTTON */
+.add-btn{width:100%;padding:12px;background:transparent;border:2px dashed var(--border);border-radius:var(--radius);color:var(--muted);font-size:.83rem;font-family:'Poppins',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:7px;transition:all .2s;}
+.add-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+/* WEEK SCROLL */
+.week-scroll{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;margin-bottom:13px;}
+.week-scroll::-webkit-scrollbar{display:none;}
+.week-day{flex-shrink:0;background:var(--card);border-radius:11px;padding:8px 10px;text-align:center;border:1.5px solid var(--border);cursor:pointer;min-width:48px;}
+.week-day.today{border-color:var(--accent);background:rgba(200,241,53,.07);}
+.week-day.sel{background:var(--accent);color:#0d0d12;border-color:var(--accent);}
+.wd-name{font-size:.58rem;font-weight:700;text-transform:uppercase;color:var(--muted);}
+.week-day.sel .wd-name,.week-day.sel .wd-pct{color:#0d0d12;}
+.wd-num{font-size:1rem;font-weight:800;margin-top:1px;}
+.wd-pct{font-size:.56rem;margin-top:2px;color:var(--accent);}
+
+/* HEATMAP */
+.hmap-row{display:flex;gap:5px;align-items:center;margin-bottom:6px;}
+.hmap-lbl{font-size:.65rem;color:var(--muted);width:72px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hmap-cells{display:flex;gap:2px;flex-wrap:wrap;}
+.hmap-cell{width:10px;height:10px;border-radius:2px;background:var(--border);}
+.hmap-cell.l1{background:rgba(200,241,53,.2);}
+.hmap-cell.l2{background:rgba(200,241,53,.55);}
+.hmap-cell.l3{background:var(--accent);}
+
+/* MONTH */
+.month-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;}
+.month-nav button{background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:5px 13px;cursor:pointer;font-family:'Poppins',sans-serif;font-weight:600;}
+.month-title{font-size:.92rem;font-weight:700;}
+.month-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
+.mcell-hdr{text-align:center;font-size:.56rem;font-weight:700;color:var(--muted);padding:3px 0;text-transform:uppercase;}
+.mcell{aspect-ratio:1;border-radius:7px;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;border:1px solid transparent;}
+.mcell.today{border-color:var(--accent);color:var(--accent);}
+.mcell.full{background:var(--accent);color:#0d0d12;}
+.mcell.partial{background:rgba(200,241,53,.22);color:var(--accent);}
+.mcell.empty{opacity:.15;}
+.mcell.future{opacity:.3;}
+
+/* STREAK CARDS */
+.streak-card{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(200,241,53,.1));border:1px solid var(--border);border-radius:var(--radius);padding:15px;margin-bottom:9px;display:flex;align-items:center;gap:13px;}
+.s-emoji{font-size:1.9rem;}
+.s-info{flex:1;}
+.s-name{font-size:.87rem;font-weight:700;}
+.s-num{font-family:'Space Mono',monospace;font-size:1.7rem;font-weight:700;color:var(--accent);line-height:1;}
+.s-sub{font-size:.65rem;color:var(--muted);}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:200;display:none;align-items:flex-end;justify-content:center;}
+.overlay.open{display:flex;}
+.modal{background:var(--card2);width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:20px 17px 34px;animation:slideUp .3s ease;}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-title{font-size:1rem;font-weight:700;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;}
+.modal-close{background:var(--border);border:none;color:var(--text);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.9rem;}
+.modal label{display:block;font-size:.72rem;color:var(--muted);margin-bottom:4px;margin-top:10px;}
+.modal input,.modal select{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'Poppins',sans-serif;font-size:.86rem;}
+.modal input:focus,.modal select:focus{outline:none;border-color:var(--accent);}
+.emoji-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.e-opt{width:36px;height:36px;border-radius:8px;background:var(--bg);border:1.5px solid var(--border);font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.e-opt.sel{border-color:var(--accent);background:rgba(200,241,53,.15);}
+.color-grid{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;}
+.c-opt{width:28px;height:28px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:all .15s;}
+.c-opt.sel{border-color:white;transform:scale(1.18);}
+.modal-btns{display:flex;gap:8px;margin-top:17px;}
+.btn-cancel{flex:1;padding:11px;background:transparent;border:1.5px solid var(--border);border-radius:11px;color:var(--text);font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer;}
+.btn-save{flex:2;padding:11px;background:var(--accent);border:none;border-radius:11px;color:#0d0d12;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;font-size:.86rem;}
+.btn-delete{padding:11px 14px;background:rgba(239,68,68,.15);border:1.5px solid var(--red);border-radius:11px;color:var(--red);font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer;font-size:.78rem;}
+
+/* SYNC INDICATOR */
+.sync-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block;margin-right:4px;}
+.sync-dot.syncing{background:#f59e0b;animation:pulse .8s infinite;}
+.sync-dot.error{background:var(--red);}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--accent);color:#0d0d12;padding:9px 20px;border-radius:30px;font-weight:700;font-size:.8rem;z-index:400;transition:transform .3s ease;white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+.empty{text-align:center;color:var(--muted);font-size:.8rem;padding:26px 0;}
+
+/* ── PROFILE SECTION ── */
+.profile-top{background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(200,241,53,.1));border:1px solid var(--border);border-radius:20px;padding:22px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:14px;}
+.profile-avatar-big{width:72px;height:72px;border-radius:50%;border:3px solid var(--accent);object-fit:cover;margin-bottom:10px;}
+.profile-initials-big{width:72px;height:72px;border-radius:50%;border:3px solid var(--accent);background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:10px;}
+.profile-name{font-size:1.1rem;font-weight:800;margin-bottom:3px;}
+.profile-email{font-size:.72rem;color:var(--muted);margin-bottom:10px;}
+.profile-join{font-size:.72rem;color:var(--accent);font-weight:600;background:rgba(200,241,53,.1);padding:4px 12px;border-radius:20px;}
+
+.profile-info-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:6px 4px;margin-bottom:12px;}
+.pinfo-row{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid var(--border);}
+.pinfo-row:last-child{border-bottom:none;}
+.pinfo-label{font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:7px;}
+.pinfo-label span{font-size:1rem;}
+.pinfo-val{font-size:.82rem;font-weight:600;}
+.pinfo-edit{background:var(--border);border:none;color:var(--text);border-radius:7px;padding:4px 10px;font-size:.7rem;font-family:'Poppins',sans-serif;cursor:pointer;}
+
+.profile-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+.pstat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:13px 8px;text-align:center;}
+.pstat-num{font-family:'Space Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--accent);}
+.pstat-lbl{font-size:.58rem;color:var(--muted);margin-top:3px;}
+
+.logout-btn{width:100%;padding:13px;background:rgba(239,68,68,.12);border:1.5px solid var(--red);border-radius:var(--radius);color:var(--red);font-family:'Poppins',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;margin-top:4px;}
+.logout-btn:hover{background:rgba(239,68,68,.22);}
+
+/* Age edit modal */
+#ageModal{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:300;display:none;align-items:center;justify-content:center;}
+#ageModal.open{display:flex;}
+.age-box{background:var(--card2);border-radius:18px;padding:24px 20px;width:88%;max-width:320px;}
+.age-box h3{font-size:1rem;font-weight:700;margin-bottom:14px;}
+.age-box input{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'Poppins',sans-serif;font-size:1rem;text-align:center;margin-bottom:14px;}
+.age-box input:focus{outline:none;border-color:var(--accent);}
+.age-box-btns{display:flex;gap:8px;}
+.age-box-btns button{flex:1;padding:10px;border-radius:10px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;font-size:.85rem;border:none;}
+.age-cancel{background:var(--border);color:var(--text);}
+.age-save{background:var(--accent);color:#0d0d12;}
+
+/* ── ADMOB AD CONTAINERS ── */
+.admob-banner-wrap{width:100%;min-height:50px;display:flex;align-items:center;justify-content:center;background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:10px 0;overflow:hidden;}
+.admob-native-wrap{width:100%;min-height:80px;background:var(--card);border:1px solid var(--radius);border-radius:var(--radius);margin:12px 0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.ad-label{font-size:.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;text-align:center;padding:3px 0;}
+
+/* ── HOME / LANDING PAGE ── */
+#homePage{display:flex;flex-direction:column;min-height:100vh;background:var(--bg);overflow:hidden;position:relative;}
+
+/* animated bg blobs */
+.hp-blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;}
+.hp-blob-1{width:260px;height:260px;background:rgba(124,58,237,.28);top:-60px;right:-80px;animation:blobFloat 7s ease-in-out infinite;}
+.hp-blob-2{width:200px;height:200px;background:rgba(200,241,53,.15);bottom:120px;left:-60px;animation:blobFloat 9s ease-in-out infinite reverse;}
+.hp-blob-3{width:150px;height:150px;background:rgba(244,114,182,.13);top:42%;left:50%;animation:blobFloat 6s ease-in-out infinite 2s;}
+@keyframes blobFloat{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-22px) scale(1.06);}}
+
+/* top bar */
+.hp-topbar{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:20px 22px 0;}
+.hp-logo{font-family:'Space Mono',monospace;font-size:1.1rem;font-weight:700;color:var(--accent);}
+.hp-logo span{color:var(--text);}
+.hp-badge{background:rgba(200,241,53,.12);border:1px solid rgba(200,241,53,.3);border-radius:20px;padding:5px 12px;font-size:.65rem;font-weight:700;color:var(--accent);letter-spacing:.5px;}
+
+/* hero */
+.hp-hero{position:relative;z-index:2;padding:36px 22px 20px;text-align:center;}
+.hp-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(200,241,53,.1);border:1px solid rgba(200,241,53,.25);border-radius:20px;padding:5px 14px;font-size:.68rem;font-weight:700;color:var(--accent);margin-bottom:18px;}
+.hp-title{font-size:2rem;font-weight:900;line-height:1.15;margin-bottom:10px;letter-spacing:-1px;}
+.hp-title .hl{color:var(--accent);}
+.hp-title .hl2{color:var(--pink);}
+.hp-sub{font-size:.82rem;color:var(--muted);line-height:1.6;max-width:290px;margin:0 auto 24px;}
+
+/* preview card */
+.hp-preview{position:relative;z-index:2;margin:0 18px 28px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:16px;overflow:hidden;}
+.hp-preview-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.hp-preview-title{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.hp-preview-date{font-size:.68rem;color:var(--accent);font-weight:600;}
+.hp-task-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.hp-task-row:last-child{border-bottom:none;}
+.hp-task-check{width:26px;height:26px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;}
+.hp-task-check.done{background:var(--accent);border-color:var(--accent);color:#0d0d12;}
+.hp-task-info{flex:1;}
+.hp-task-name{font-size:.78rem;font-weight:600;}
+.hp-task-streak{font-size:.62rem;color:#f59e0b;}
+.hp-task-earn{font-size:.62rem;color:var(--accent);font-weight:700;background:rgba(200,241,53,.1);padding:2px 7px;border-radius:8px;}
+.hp-earn-row{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding:10px 12px;background:linear-gradient(135deg,rgba(200,241,53,.1),rgba(124,58,237,.1));border-radius:12px;border:1px solid rgba(200,241,53,.2);}
+.hp-earn-label{font-size:.7rem;color:var(--muted);}
+.hp-earn-val{font-family:'Space Mono',monospace;font-size:1rem;font-weight:700;color:var(--accent);}
+
+/* features */
+.hp-features{position:relative;z-index:2;padding:0 18px;display:flex;flex-direction:column;gap:9px;margin-bottom:28px;}
+.hp-feat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:13px 15px;display:flex;align-items:center;gap:13px;}
+.hp-feat-icon{font-size:1.4rem;flex-shrink:0;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;}
+.hp-feat-icon.green{background:rgba(200,241,53,.12);}
+.hp-feat-icon.purple{background:rgba(124,58,237,.15);}
+.hp-feat-icon.pink{background:rgba(244,114,182,.12);}
+.hp-feat-icon.orange{background:rgba(251,146,60,.12);}
+.hp-feat-text strong{display:block;font-size:.82rem;font-weight:700;margin-bottom:2px;}
+.hp-feat-text span{font-size:.7rem;color:var(--muted);line-height:1.4;}
+
+/* CTA bottom */
+.hp-cta{position:relative;z-index:2;padding:0 18px 40px;}
+.hp-cta-card{background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(200,241,53,.08));border:1px solid rgba(200,241,53,.2);border-radius:20px;padding:22px 18px;text-align:center;}
+.hp-cta-title{font-size:1rem;font-weight:800;margin-bottom:5px;}
+.hp-cta-sub{font-size:.72rem;color:var(--muted);margin-bottom:18px;}
+.hp-google-btn{width:100%;padding:14px;background:#fff;border:none;border-radius:13px;color:#1a1a1a;font-family:'Poppins',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;margin-bottom:10px;box-shadow:0 4px 20px rgba(0,0,0,.3);}
+.hp-google-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.4);}
+.hp-skip{font-size:.7rem;color:var(--muted);cursor:pointer;text-decoration:underline;}
+
+/* Page transition */
+#homePage.slide-out{animation:slideLeft .35s ease forwards;}
+@keyframes slideLeft{to{transform:translateX(-100%);opacity:0;}}
+#loginScreen.slide-in{animation:slideRight .35s ease forwards;}
+@keyframes slideRight{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+</style>
+</head>
+<div id="blogger-wrap">
+
+<!-- ══════════════════════════════════
+     HOME / LANDING PAGE
+══════════════════════════════════ -->
+<div id="homePage">
+  <!-- Animated background blobs -->
+  <div class="hp-blob hp-blob-1"></div>
+  <div class="hp-blob hp-blob-2"></div>
+  <div class="hp-blob hp-blob-3"></div>
+
+  <!-- Top bar -->
+  <div class="hp-topbar">
+    <div class="hp-logo">Task<span>Track</span></div>
+    <div class="hp-badge">✦ FREE</div>
+  </div>
+
+  <!-- Hero section -->
+  <div class="hp-hero">
+    <div class="hp-tag">🚀 Earn karo tasks se</div>
+    <div class="hp-title">
+      Apne Tasks<br>Complete Karo,<br><span class="hl">Paise</span> <span class="hl2">Kamao!</span>
+    </div>
+    <div class="hp-sub">Daily tasks track karo, streaks banao, aur har task complete karne par real earnings pao!</div>
+  </div>
+
+  <!-- App Preview card -->
+  <div class="hp-preview">
+    <div class="hp-preview-header">
+      <div class="hp-preview-title">Today's Tasks</div>
+      <div class="hp-preview-date">3/3 Done ✓</div>
+    </div>
+    <div class="hp-task-row">
+      <div class="hp-task-check done">✓</div>
+      <div class="hp-task-info">
+        <div class="hp-task-name">💧 Drink Water</div>
+        <div class="hp-task-streak">🔥 12 day streak</div>
+      </div>
+      <div class="hp-task-earn">+₹2</div>
+    </div>
+    <div class="hp-task-row">
+      <div class="hp-task-check done">✓</div>
+      <div class="hp-task-info">
+        <div class="hp-task-name">📚 Read Books</div>
+        <div class="hp-task-streak">🔥 7 day streak</div>
+      </div>
+      <div class="hp-task-earn">+₹2</div>
+    </div>
+    <div class="hp-task-row">
+      <div class="hp-task-check">○</div>
+      <div class="hp-task-info">
+        <div class="hp-task-name">🏃 Exercise</div>
+        <div class="hp-task-streak">🔥 5 day streak</div>
+      </div>
+      <div class="hp-task-earn">+₹2</div>
+    </div>
+    <div class="hp-earn-row">
+      <div class="hp-earn-label">💰 Is mahine ki earnings</div>
+      <div class="hp-earn-val">₹148.00</div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="hp-features">
+    <div class="hp-feat">
+      <div class="hp-feat-icon green">🎯</div>
+      <div class="hp-feat-text">
+        <strong>Task Completion Rewards</strong>
+        <span>Har task complete karo aur ₹2 kamao. 100 tasks = ₹200!</span>
+      </div>
+    </div>
+    <div class="hp-feat">
+      <div class="hp-feat-icon purple">🔥</div>
+      <div class="hp-feat-text">
+        <strong>Streaks & Stats</strong>
+        <span>Daily streaks banao, weekly aur monthly progress dekho.</span>
+      </div>
+    </div>
+    <div class="hp-feat">
+      <div class="hp-feat-icon pink">💸</div>
+      <div class="hp-feat-text">
+        <strong>Easy Withdrawal</strong>
+        <span>Apni earnings seedha apne account mein withdraw karo.</span>
+      </div>
+    </div>
+    <div class="hp-feat">
+      <div class="hp-feat-icon orange">☁️</div>
+      <div class="hp-feat-text">
+        <strong>Cloud Sync</strong>
+        <span>Har device pe data safe — kabhi kuch miss nahi hoga.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="hp-cta">
+    <div class="hp-cta-card">
+      <div class="hp-cta-title">Aaj se shuru karo! 🚀</div>
+      <div class="hp-cta-sub">Free mein join karo — koi subscription nahi</div>
+      <button class="hp-google-btn" onclick="goToLogin()">
+        <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
+        Google se Login Karo
+      </button>
+      <div class="hp-skip" onclick="goToLogin()">Pehle explore karna chahte ho? →</div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen">
+  <div class="login-logo">Task<span>Track</span></div>
+  <div class="login-sub">Apne daily tasks track karo</div>
+  <div class="login-card">
+    <div class="login-title">Welcome! 👋</div>
+    <div class="login-desc">Google se login karo — aapka data safely cloud mein save hoga. Kisi bhi device se access kar sakte ho.</div>
+    <button class="google-btn" onclick="signInWithGoogle()">
+      <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
+      Google se Login Karo
+    </button>
+  </div>
+  <div class="login-features">
+    <div class="feat"><div class="feat-icon">☁️</div><div class="feat-text"><strong>Cloud Sync</strong>Har device pe same data</div></div>
+    <div class="feat"><div class="feat-icon">🔒</div><div class="feat-text"><strong>Safe & Secure</strong>Sirf aapka data, sirf aapke liye</div></div>
+    <div class="feat"><div class="feat-icon">🔥</div><div class="feat-text"><strong>Streaks & Stats</strong>Daily, weekly, monthly tracking</div></div>
+  </div>
+</div>
+
+<!-- LOADING SCREEN -->
+<div id="loadingScreen" style="display:none;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:16px;">
+  <div class="spinner"></div>
+  <div class="loading-text" id="loadingText">Loading...</div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app" style="display:none;">
+  <header>
+    <div class="logo">Task<span>Track</span></div>
+    <div class="header-right">
+      <div class="streak-pill" id="topStreak">🔥 0 days</div>
+      <span class="sync-dot" id="syncDot" title="Synced"></span>
+      <div id="userAvatarWrap" onclick="toggleUserMenu()"></div>
+    </div>
+  </header>
+
+  <div style="position:relative;">
+    <div class="user-menu" id="userMenu">
+      <div class="user-menu-name" id="menuName">--<div class="user-menu-email" id="menuEmail">--</div></div>
+      <div class="menu-item" onclick="closeUserMenu()">✕ Close</div>
+      <div class="menu-item danger" onclick="signOut()">🚪 Logout</div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('daily')">📅 Daily</button>
+    <button class="tab" onclick="switchTab('weekly')">📊 Weekly</button>
+    <button class="tab" onclick="switchTab('monthly')">📆 Monthly</button>
+    <button class="tab" onclick="switchTab('streaks')">🔥 Streaks</button>
+    <button class="tab" onclick="switchTab('manage')">⚙️ Manage</button>
+    <button class="tab" onclick="switchTab('profile')">👤 Profile</button>
+  </div>
+
+  <!-- DAILY -->
+  <div class="view active" id="view-daily">
+    <div class="date-header">
+      <div><div class="date-big" id="todayDate">--</div><div class="date-sub" id="todayDay">--</div></div>
+      <div><div class="today-pct" id="todayPct">0% done</div><div class="prog-wrap"><div class="prog-fill" id="todayBar" style="width:0%"></div></div></div>
+    </div>
+    <div class="sec">Today's Tasks</div>
+    <div id="dailyTasks"></div>
+    <!-- PROPELLERADS BANNER — Daily View -->
+    <div class="admob-banner-wrap">
+      <div class="ad-label">Advertisement</div>
+      <!-- PropellerAds Banner Code Yahan Aayega -->
+      <div id="propeller-banner-daily" style="width:320px;height:50px;background:rgba(200,241,53,.06);border:1px dashed rgba(200,241,53,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--muted);">Ad Loading...</div>
+    </div>
+    <button class="add-btn" onclick="openModal()">＋ Add New Task</button>
+  </div>
+
+  <!-- WEEKLY -->
+  <div class="view" id="view-weekly">
+    <div class="sec">This Week</div>
+    <div class="week-scroll" id="weekCal"></div>
+    <div class="sec">Tasks on <span id="selDateLbl">--</span></div>
+    <div id="weekTasks"></div>
+    <div class="sec" style="margin-top:18px;">28-Day Heatmap</div>
+    <div id="heatmap"></div>
+    <!-- PROPELLERADS NATIVE — Weekly View -->
+    <div class="admob-native-wrap">
+      <div class="ad-label">Advertisement</div>
+      <!-- PropellerAds Native/Push Code Yahan Aayega -->
+      <div id="propeller-native-weekly" style="width:100%;height:60px;background:rgba(124,58,237,.06);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--muted);">Ad Loading...</div>
+    </div>
+  </div>
+
+  <!-- MONTHLY -->
+  <div class="view" id="view-monthly">
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num" id="mTotal">0</div><div class="stat-label">Check-ins</div></div>
+      <div class="stat-card"><div class="stat-num" id="mBest">0</div><div class="stat-label">Best Streak</div></div>
+      <div class="stat-card"><div class="stat-num" id="mRate">0%</div><div class="stat-label">Completion</div></div>
+    </div>
+    <div class="month-nav">
+      <button onclick="changeMonth(-1)">‹</button>
+      <div class="month-title" id="monthTitle">--</div>
+      <button onclick="changeMonth(1)">›</button>
+    </div>
+    <div class="month-grid" id="monthGrid"></div>
+  </div>
+
+  <!-- STREAKS -->
+  <div class="view" id="view-streaks">
+    <div class="sec">All Task Streaks</div>
+    <div id="streakCards"></div>
+    <!-- ADMOB REWARDED AD — Streak View -->
+    <div style="margin:14px 0;background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(200,241,53,.1));border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:12px;">
+      <div style="font-size:1.6rem;">🎁</div>
+      <div style="flex:1;">
+        <div style="font-size:.82rem;font-weight:700;">Bonus Unlock Karo!</div>
+        <div style="font-size:.7rem;color:var(--muted);margin-top:2px;">Ek short ad dekho aur apna streak badge claim karo</div>
+      </div>
+      <button id="rewardedAdBtn" onclick="showRewardedAd()" style="background:var(--accent);border:none;border-radius:10px;color:#0d0d12;font-family:'Poppins',sans-serif;font-size:.75rem;font-weight:700;padding:8px 13px;cursor:pointer;">Watch</button>
+    </div>
+  </div>
+
+  <!-- MANAGE -->
+  <div class="view" id="view-manage">
+    <div class="sec">All Tasks</div>
+    <div id="manageList"></div>
+    <button class="add-btn" onclick="openModal()">＋ Add New Task</button>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="view" id="view-profile">
+    <!-- Top card: avatar + name + email + join date -->
+    <div class="profile-top">
+      <div id="profileAvatarBig"></div>
+      <div class="profile-name" id="profileName">--</div>
+      <div class="profile-email" id="profileEmail">--</div>
+      <div class="profile-join" id="profileJoin">📅 Joined --</div>
+    </div>
+
+    <!-- Info rows -->
+    <div class="sec">My Info</div>
+    <div class="profile-info-card">
+      <div class="pinfo-row">
+        <div class="pinfo-label"><span>👤</span> Full Name</div>
+        <div class="pinfo-val" id="pName">--</div>
+      </div>
+      <div class="pinfo-row">
+        <div class="pinfo-label"><span>📧</span> Email</div>
+        <div class="pinfo-val" id="pEmail" style="font-size:.72rem;">--</div>
+      </div>
+      <div class="pinfo-row">
+        <div class="pinfo-label"><span>🎂</span> Age</div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="pinfo-val" id="pAge">Not set</div>
+          <button class="pinfo-edit" onclick="openAgeModal()">Edit</button>
+        </div>
+      </div>
+      <div class="pinfo-row">
+        <div class="pinfo-label"><span>📅</span> Joined On</div>
+        <div class="pinfo-val" id="pJoined">--</div>
+      </div>
+      <div class="pinfo-row">
+        <div class="pinfo-label"><span>⏱️</span> Member Since</div>
+        <div class="pinfo-val" id="pSince">--</div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="sec">My Stats</div>
+    <div class="profile-stats-grid">
+      <div class="pstat"><div class="pstat-num" id="pTotalTasks">0</div><div class="pstat-lbl">Total Tasks</div></div>
+      <div class="pstat"><div class="pstat-num" id="pDoneTasks">0</div><div class="pstat-lbl">Completed</div></div>
+      <div class="pstat"><div class="pstat-num" id="pBestStreak">0</div><div class="pstat-lbl">Best Streak</div></div>
+    </div>
+
+    <!-- Logout -->
+    <button class="logout-btn" onclick="signOut()">🚪 Logout</button>
+  </div>
+</div>
+
+<!-- AGE EDIT MODAL -->
+<div id="ageModal" onclick="closeAgeModal(event)">
+  <div class="age-box">
+    <h3>🎂 Apni Age Set Karo</h3>
+    <input type="number" id="ageInput" placeholder="e.g. 22" min="5" max="100">
+    <div class="age-box-btns">
+      <button class="age-cancel" onclick="document.getElementById('ageModal').classList.remove('open')">Cancel</button>
+      <button class="age-save" onclick="saveAge()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeOverlay(event)">
+  <div class="modal">
+    <div class="modal-title">
+      <span id="modalTitle">Add Task</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <label>Task Name</label>
+    <input type="text" id="hName" placeholder="e.g. Morning Run" maxlength="30">
+    <label>Choose Emoji</label>
+    <div class="emoji-grid" id="emojiGrid"></div>
+    <label>Color Tag</label>
+    <div class="color-grid" id="colorGrid"></div>
+    <label>Frequency</label>
+    <select id="hFreq">
+      <option value="daily">Every Day</option>
+      <option value="weekdays">Weekdays (Mon–Fri)</option>
+      <option value="weekends">Weekends Only</option>
+    </select>
+    <label>Goal (optional)</label>
+    <input type="text" id="hGoal" placeholder="e.g. 30 minutes" maxlength="30">
+    <div class="modal-btns" id="modalBtns">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" onclick="saveTask()">Save Task</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════════════════════════════════
+     ADMOB INTEGRATION — Capacitor Plugin Ready
+     App ID: ca-app-pub-6440660673457156~5206087610
+═══════════════════════════════════════════ -->
+<script>
+// ── ADMOB CONFIG ──
+const ADMOB_CONFIG = {
+  appId:         'ca-app-pub-6440660673457156~5206087610',
+  banner:        'ca-app-pub-6440660673457156/2372579716',
+  interstitial:  'ca-app-pub-6440660673457156/8818029567',
+  rewarded:      'ca-app-pub-6440660673457156/6191866228',
+};
+
+// ── TAB SWITCH COUNTER (Interstitial trigger) ──
+let tabSwitchCount = 0;
+let interstitialLoaded = false;
+let rewardedLoaded = false;
+
+// ── ADMOB INITIALIZE ──
+async function initAdMob() {
+  if (!window.AdMob) {
+    // Browser/WebView mein placeholder show karo
+    showAdPlaceholders();
+    return;
+  }
+  try {
+    await AdMob.initialize({
+      requestTrackingAuthorization: true,
+      testingDevices: [],
+      initializeForTesting: false,
+    });
+    console.log('AdMob initialized ✅');
+    showBannerAd();
+    prepareInterstitial();
+    prepareRewarded();
+  } catch(e) {
+    console.error('AdMob init error:', e);
+    showAdPlaceholders();
+  }
+}
+
+// ── BANNER AD ──
+async function showBannerAd() {
+  if (!window.AdMob) return;
+  try {
+    const options = {
+      adId: ADMOB_CONFIG.banner,
+      adSize: AdSize.ADAPTIVE_BANNER,
+      position: AdPosition.BOTTOM_CENTER,
+      margin: 0,
+      isTesting: false,
+    };
+    await AdMob.showBanner(options);
+    // Bottom padding taaki content banner ke neeche na chhuup jaye
+    document.body.style.paddingBottom = '60px';
+  } catch(e) {
+    console.error('Banner ad error:', e);
+  }
+}
+
+// ── INTERSTITIAL AD ──
+async function prepareInterstitial() {
+  if (!window.AdMob) return;
+  try {
+    await AdMob.prepareInterstitial({ adId: ADMOB_CONFIG.interstitial, isTesting: false });
+    interstitialLoaded = true;
+  } catch(e) {
+    console.error('Interstitial prepare error:', e);
+  }
+}
+
+async function showInterstitialAd() {
+  if (!window.AdMob || !interstitialLoaded) return;
+  try {
+    await AdMob.showInterstitial();
+    interstitialLoaded = false;
+    // Next interstitial prepare karo
+    setTimeout(prepareInterstitial, 2000);
+  } catch(e) {
+    console.error('Interstitial show error:', e);
+  }
+}
+
+// ── REWARDED AD ──
+async function prepareRewarded() {
+  if (!window.AdMob) return;
+  try {
+    await AdMob.prepareRewardVideoAd({ adId: ADMOB_CONFIG.rewarded, isTesting: false });
+    rewardedLoaded = true;
+  } catch(e) {
+    console.error('Rewarded prepare error:', e);
+  }
+}
+
+window.showRewardedAd = async function() {
+  if (!window.AdMob) {
+    showToast('🎁 Ad coming soon in app!');
+    return;
+  }
+  if (!rewardedLoaded) {
+    showToast('⏳ Ad load ho raha hai...');
+    await prepareRewarded();
+    return;
+  }
+  try {
+    AdMob.addListener('onRewardedVideoAdLoaded', () => {});
+    AdMob.addListener('onRewardReceived', (reward) => {
+      showToast('🏆 Reward mil gaya! ' + reward.type + ' x' + reward.amount);
+      rewardedLoaded = false;
+      setTimeout(prepareRewarded, 2000);
+    });
+    await AdMob.showRewardVideoAd();
+  } catch(e) {
+    console.error('Rewarded show error:', e);
+    showToast('❌ Ad load nahi hua. Try again!');
+  }
+};
+
+// ── BROWSER PLACEHOLDERS (testing ke liye) ──
+function showAdPlaceholders() {
+  const bannerEl = document.getElementById('admob-banner-daily');
+  if (bannerEl) {
+    bannerEl.innerHTML = `<div style="width:320px;height:50px;background:rgba(200,241,53,.08);border:1px dashed rgba(200,241,53,.3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.68rem;color:var(--muted);">📢 Banner Ad (320×50) — App mein real ad aayega</div>`;
+  }
+  const nativeEl = document.getElementById('admob-native-weekly');
+  if (nativeEl) {
+    nativeEl.innerHTML = `<div style="width:100%;height:60px;background:rgba(124,58,237,.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.68rem;color:var(--muted);">📢 Native Ad — App mein real ad aayega</div>`;
+  }
+}
+
+// ── DOM READY ──
+document.addEventListener('deviceready', initAdMob, false); // Capacitor/Cordova
+document.addEventListener('DOMContentLoaded', () => {
+  // Agar browser mein khul raha hai to placeholders show karo
+  if (!window.AdMob) {
+    setTimeout(showAdPlaceholders, 500);
+  }
+});
+</script>
+
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut as fbSignOut } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA-anBenPm1Fi5BxGp2KjlYdgwDosvwuqQ",
+  authDomain: "habit-tracker-1b935.firebaseapp.com",
+  projectId: "habit-tracker-1b935",
+  storageBucket: "habit-tracker-1b935.firebasestorage.app",
+  messagingSenderId: "812969574751",
+  appId: "1:812969574751:web:6fce098711c6d4578436ea",
+  measurementId: "G-F9Y19M7MNZ"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// ── CONSTANTS ──
+const EMOJIS=['💪','🏃','📚','💧','🧘','🥗','😴','✍️','🎯','🚴','🏋️','🎵','🌿','☕','🧠','🦷','🙏','💊','🌅','🤸','🏊','🧹','💼','🎨','🥤','🍎','🚶','📝'];
+const COLORS=['#c8f135','#7c3aed','#f472b6','#fb923c','#38bdf8','#34d399','#f87171','#a78bfa'];
+const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MSHORT=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+// ── STATE ──
+let today=new Date(); today.setHours(0,0,0,0);
+let selDate=new Date(today);
+let curMonth=new Date(today.getFullYear(),today.getMonth(),1);
+let editId=null, pickedEmoji=EMOJIS[0], pickedColor=COLORS[0];
+let currentUser=null;
+let S={tasks:[],logs:{},age:null};
+let saveTimeout=null;
+
+function dk(d){return d.toISOString().slice(0,10);}
+function showEl(id){document.getElementById(id).style.display='flex';}
+function hideEl(id){document.getElementById(id).style.display='none';}
+function setSyncDot(state){
+  const d=document.getElementById('syncDot');
+  if(!d) return;
+  d.className='sync-dot'+(state==='syncing'?' syncing':state==='error'?' error':'');
+}
+
+// ── HOME PAGE → LOGIN TRANSITION ──
+window.goToLogin = function(){
+  const hp = document.getElementById('homePage');
+  const ls = document.getElementById('loginScreen');
+  hp.classList.add('slide-out');
+  setTimeout(()=>{
+    hp.style.display='none';
+    ls.style.display='flex';
+    ls.classList.add('slide-in');
+    setTimeout(()=>ls.classList.remove('slide-in'),400);
+  }, 320);
+};
+window.signInWithGoogle=async function(){
+  try{
+    const provider=new GoogleAuthProvider();
+    await signInWithPopup(auth,provider);
+  }catch(e){
+    showToast('❌ Login failed. Try again!');
+    console.error(e);
+  }
+};
+
+window.signOut=async function(){
+  if(!confirm('Logout karna chahte ho?')) return;
+  await fbSignOut(auth);
+  S={tasks:[],logs:{},age:null};
+  document.getElementById('app').style.display='none';
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('homePage').style.display='flex';
+  showToast('👋 Logout ho gaye!');
+};
+
+window.toggleUserMenu=function(){document.getElementById('userMenu').classList.toggle('open');};
+window.closeUserMenu=function(){document.getElementById('userMenu').classList.remove('open');};
+
+// ── FIRESTORE ──
+async function loadData(){
+  if(!currentUser) return;
+
+  // ── STEP 1: LocalStorage se turant dikhao ──
+  const cacheKey = 'habitcache_' + currentUser.uid;
+  const cached = localStorage.getItem(cacheKey);
+  if(cached){
+    try{
+      const parsed = JSON.parse(cached);
+      S.tasks = parsed.tasks || [];
+      S.logs = parsed.logs || {};
+      // App turant dikhao — Firebase ka wait mat karo
+      document.getElementById('loadingScreen').style.display='none';
+      document.getElementById('app').style.display='block';
+      render();
+    }catch(e){}
+  }
+
+  // ── STEP 2: Firebase se background mein sync karo ──
+  setSyncDot('syncing');
+  try{
+    const ref=doc(db,'users',currentUser.uid,'data','main');
+    const snap=await getDoc(ref);
+    if(snap.exists()){
+      const d=snap.data();
+      S.tasks=d.tasks||[];
+      S.logs=d.logs||{};
+      S.age=d.age||null;
+      // Cache update karo
+      localStorage.setItem(cacheKey, JSON.stringify({tasks:S.tasks, logs:S.logs}));
+    } else {
+      S.tasks=[
+        {id:'h1',name:'Drink Water',emoji:'💧',color:'#38bdf8',freq:'daily',goal:'8 glasses',added:dk(today)},
+        {id:'h2',name:'Read Books',emoji:'📚',color:'#c8f135',freq:'daily',goal:'20 minutes',added:dk(today)},
+        {id:'h3',name:'Exercise',emoji:'🏃',color:'#f472b6',freq:'daily',goal:'30 minutes',added:dk(today)},
+      ];
+      S.logs={};
+      await saveData();
+      localStorage.setItem(cacheKey, JSON.stringify({tasks:S.tasks, logs:S.logs}));
+    }
+    setSyncDot('ok');
+    // Agar cache nahi tha tab bhi app dikhao
+    document.getElementById('loadingScreen').style.display='none';
+    document.getElementById('app').style.display='block';
+    render();
+  }catch(e){
+    setSyncDot('error');
+    // Cache tha to already app dikh raha hai — error toast enough hai
+    if(!cached) showToast('⚠️ Data load mein error!');
+    console.error(e);
+  }
+}
+
+async function saveData(){
+  if(!currentUser) return;
+  setSyncDot('syncing');
+  try{
+    const ref=doc(db,'users',currentUser.uid,'data','main');
+    await setDoc(ref,{tasks:S.tasks,logs:S.logs,age:S.age||null,updatedAt:new Date().toISOString()});
+    // Cache bhi update karo
+    const cacheKey = 'habitcache_' + currentUser.uid;
+    localStorage.setItem(cacheKey, JSON.stringify({tasks:S.tasks, logs:S.logs}));
+    setSyncDot('ok');
+  }catch(e){
+    setSyncDot('error');
+    showToast('⚠️ Save error! Check internet.');
+    console.error(e);
+  }
+}
+
+function scheduleSave(){
+  if(saveTimeout) clearTimeout(saveTimeout);
+  saveTimeout=setTimeout(saveData,1200);
+}
+
+// ── AUTH STATE ──
+onAuthStateChanged(auth, async (user)=>{
+  if(user){
+    currentUser=user;
+    document.getElementById('homePage').style.display='none';
+    document.getElementById('loginScreen').style.display='none';
+
+    // User avatar set karo
+    const wrap=document.getElementById('userAvatarWrap');
+    if(user.photoURL){
+      wrap.innerHTML=`<img src="${user.photoURL}" class="user-avatar" onclick="toggleUserMenu()">`;
+    } else {
+      const initials=(user.displayName||'U').split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase();
+      wrap.innerHTML=`<div class="user-initials" onclick="toggleUserMenu()">${initials}</div>`;
+    }
+    document.getElementById('menuName').innerHTML=`${user.displayName||'User'}<div class="user-menu-email">${user.email||''}</div>`;
+
+    // Cache check karo — agar cache hai to loading screen skip
+    const cacheKey = 'habitcache_' + user.uid;
+    const cached = localStorage.getItem(cacheKey);
+    if(!cached){
+      document.getElementById('loadingScreen').style.display='flex';
+      document.getElementById('loadingText').textContent='Pehli baar load ho raha hai...';
+    }
+
+    // loadData — cache se turant dikhayega, Firebase background mein
+    await loadData();
+
+  } else {
+    currentUser=null;
+    document.getElementById('loadingScreen').style.display='none';
+    document.getElementById('app').style.display='none';
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('homePage').style.display='flex';
+  }
+});
+
+// ── HELPERS ──
+function isScheduled(h,d){const dw=d.getDay();if(h.freq==='daily')return true;if(h.freq==='weekdays')return dw>=1&&dw<=5;if(h.freq==='weekends')return dw===0||dw===6;return true;}
+function isDone(id,d){return !!(S.logs[dk(d)]&&S.logs[dk(d)][id]);}
+function toggle(id,d){const k=dk(d);if(!S.logs[k])S.logs[k]={};S.logs[k][id]=!S.logs[k][id];scheduleSave();render();if(S.logs[k][id])showToast('✅ Done! Keep it up!');}
+function getStreak(id){let s=0,d=new Date(today);const h=S.tasks.find(x=>x.id===id);if(!h)return 0;while(true){if(!isScheduled(h,d)){d.setDate(d.getDate()-1);continue;}if(isDone(id,d)){s++;d.setDate(d.getDate()-1);}else break;}return s;}
+function getBest(id){let best=0,cur=0;const h=S.tasks.find(x=>x.id===id);if(!h)return 0;for(let i=364;i>=0;i--){let d=new Date(today);d.setDate(today.getDate()-i);if(!isScheduled(h,d))continue;if(isDone(id,d)){cur++;best=Math.max(best,cur);}else cur=0;}return best;}
+
+// ── RENDER ──
+function render(){
+  renderHeader();
+  const active=document.querySelector('.view.active');
+  if(!active) return;
+  const id=active.id.replace('view-','');
+  if(id==='daily') renderDaily();
+  else if(id==='weekly') renderWeekly();
+  else if(id==='monthly') renderMonthly();
+  else if(id==='streaks') renderStreaks();
+  else if(id==='manage') renderManage();
+  else if(id==='profile') renderProfile();
+}
+
+function renderHeader(){
+  const max=Math.max(0,...S.tasks.map(h=>getStreak(h.id)));
+  document.getElementById('topStreak').textContent=`🔥 ${max} days`;
+}
+
+function renderDaily(){
+  document.getElementById('todayDate').textContent=`${today.getDate()} ${MSHORT[today.getMonth()]} ${today.getFullYear()}`;
+  document.getElementById('todayDay').textContent=DAYS[today.getDay()];
+  const sched=S.tasks.filter(h=>isScheduled(h,today));
+  const done=sched.filter(h=>isDone(h.id,today));
+  const pct=sched.length?Math.round(done.length/sched.length*100):0;
+  document.getElementById('todayPct').textContent=`${pct}% done`;
+  document.getElementById('todayBar').style.width=pct+'%';
+  const el=document.getElementById('dailyTasks');
+  if(!S.tasks.length){el.innerHTML='<div class="empty">Koi task nahi. Neeche se add karo! 👇</div>';return;}
+  el.innerHTML=S.tasks.map(h=>{
+    const sc=isScheduled(h,today),dn=isDone(h.id,today);
+    let dots='';
+    for(let i=6;i>=0;i--){let d=new Date(today);d.setDate(today.getDate()-i);const s=isScheduled(h,d),dd=isDone(h.id,d);dots+=`<div class="dot ${!s?'':dd?'done':d<today?'miss':''}"></div>`;}
+    return `<div class="task-card" style="${!sc?'opacity:.4':''}">
+      <div class="h-emoji">${h.emoji}</div>
+      <div class="h-info">
+        <div class="h-name" style="color:${h.color||'var(--text)'}">${h.name}</div>
+        <div class="h-meta">${h.goal||t.freq}${h.goal?' · '+h.freq:''}</div>
+        <div class="week-dots">${dots}</div>
+      </div>
+      <div class="h-right">
+        <div class="h-streak">🔥${getStreak(h.id)}</div>
+        <button class="check-btn ${dn?'done':''}" onclick="toggleToday('${h.id}')" ${!sc?'disabled':''}>${dn?'✓':'○'}</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+window.toggleToday=function(id){toggle(id,today);};
+
+function renderWeekly(){
+  const wEl=document.getElementById('weekCal');
+  let ds=[];
+  for(let i=-6;i<=7;i++){let d=new Date(today);d.setDate(today.getDate()+i);ds.push(d);}
+  const dn=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  wEl.innerHTML=ds.map(d=>{
+    const it=dk(d)===dk(today),is=dk(d)===dk(selDate);
+    const sc=S.tasks.filter(h=>isScheduled(h,d));
+    const dne=sc.filter(h=>isDone(h.id,d));
+    const pct=sc.length?Math.round(dne.length/sc.length*100):0;
+    return `<div class="week-day ${it?'today':''} ${is?'sel':''}" onclick="selDay('${dk(d)}')">
+      <div class="wd-name">${dn[d.getDay()]}</div><div class="wd-num">${d.getDate()}</div>
+      <div class="wd-pct">${sc.length?pct+'%':'-'}</div></div>`;
+  }).join('');
+  document.getElementById('selDateLbl').textContent=`${selDate.getDate()} ${MSHORT[selDate.getMonth()]}`;
+  const hEl=document.getElementById('weekTasks');
+  const sh=S.tasks.filter(h=>isScheduled(h,selDate));
+  if(!sh.length){hEl.innerHTML='<div class="empty">Is din koi task nahi.</div>';}
+  else hEl.innerHTML=sh.map(h=>{
+    const dne=isDone(h.id,selDate);
+    return `<div class="task-card">
+      <div class="h-emoji">${h.emoji}</div>
+      <div class="h-info"><div class="h-name" style="color:${h.color||'var(--text)'}">${h.name}</div>
+      <div class="h-meta">🔥${getStreak(h.id)} streak · ${t.freq}</div></div>
+      <div class="h-right"><button class="check-btn ${dne?'done':''}" onclick="toggleSel('${h.id}')">${dne?'✓':'○'}</button></div>
+    </div>`;
+  }).join('');
+  const hmEl=document.getElementById('heatmap');
+  hmEl.innerHTML=S.tasks.map(h=>{
+    let cells='';
+    for(let i=27;i>=0;i--){let d=new Date(today);d.setDate(today.getDate()-i);const sc=isScheduled(h,d),dne=isDone(h.id,d);cells+=`<div class="hmap-cell ${!sc?'':dne?'l3':d<today?'l1':''}"></div>`;}
+    return `<div class="hmap-row"><div class="hmap-lbl">${h.emoji} ${h.name}</div><div class="hmap-cells">${cells}</div></div>`;
+  }).join('');
+}
+
+window.selDay=function(k){selDate=new Date(k+'T00:00:00');renderWeekly();};
+window.toggleSel=function(id){toggle(id,selDate);};
+
+function renderMonthly(){
+  document.getElementById('monthTitle').textContent=`${MONTHS[curMonth.getMonth()]} ${curMonth.getFullYear()}`;
+  let total=0,poss=0;
+  const dim=new Date(curMonth.getFullYear(),curMonth.getMonth()+1,0).getDate();
+  for(let day=1;day<=dim;day++){let d=new Date(curMonth.getFullYear(),curMonth.getMonth(),day);if(d>today)break;S.tasks.forEach(h=>{if(isScheduled(h,d)){poss++;if(isDone(h.id,d))total++;}});}
+  document.getElementById('mTotal').textContent=total;
+  document.getElementById('mRate').textContent=poss?Math.round(total/poss*100)+'%':'0%';
+  document.getElementById('mBest').textContent=Math.max(0,...S.tasks.map(h=>getBest(h.id)));
+  const gEl=document.getElementById('monthGrid');
+  const dnames=['S','M','T','W','T','F','S'];
+  let html=dnames.map(d=>`<div class="mcell-hdr">${d}</div>`).join('');
+  const fd=new Date(curMonth.getFullYear(),curMonth.getMonth(),1).getDay();
+  for(let i=0;i<fd;i++) html+=`<div class="mcell empty"></div>`;
+  for(let day=1;day<=dim;day++){
+    let d=new Date(curMonth.getFullYear(),curMonth.getMonth(),day);
+    const it=dk(d)===dk(today),fut=d>today;
+    const sc=S.tasks.filter(h=>isScheduled(h,d)),dne=sc.filter(h=>isDone(h.id,d));
+    const pct=sc.length?dne.length/sc.length:0;
+    let cls=fut?'future':pct===1&&sc.length>0?'full':pct>0?'partial':'';
+    if(it) cls+=' today';
+    html+=`<div class="mcell ${cls}">${day}</div>`;
+  }
+  gEl.innerHTML=html;
+}
+
+window.changeMonth=function(dir){curMonth.setMonth(curMonth.getMonth()+dir);renderMonthly();};
+
+function renderStreaks(){
+  const el=document.getElementById('streakCards');
+  if(!S.tasks.length){el.innerHTML='<div class="empty">Koi task nahi!</div>';return;}
+  const sorted=[...S.tasks].sort((a,b)=>getStreak(b.id)-getStreak(a.id));
+  el.innerHTML=sorted.map(h=>{
+    const cur=getStreak(h.id),best=getBest(h.id);
+    return `<div class="streak-card">
+      <div class="s-emoji">${h.emoji}</div>
+      <div class="s-info">
+        <div class="s-name" style="color:${h.color||'var(--text)'}">${h.name}</div>
+        <div class="s-num">${cur}<span style="font-size:.72rem;color:var(--muted)"> days</span></div>
+        <div class="s-sub">🏆 Best: ${best} days · ${t.freq}</div>
+        <div style="background:var(--border);border-radius:10px;height:5px;margin-top:6px;overflow:hidden;">
+          <div style="height:100%;border-radius:10px;background:${h.color||'var(--accent)'};width:${best?Math.min(100,Math.round(cur/best*100)):0}%;transition:width .5s;"></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderManage(){
+  const el=document.getElementById('manageList');
+  if(!S.tasks.length){el.innerHTML='<div class="empty">Koi task nahi! Add karo 👇</div>';return;}
+  el.innerHTML=S.tasks.map(h=>`
+    <div class="task-card">
+      <div class="h-emoji">${h.emoji}</div>
+      <div class="h-info">
+        <div class="h-name" style="color:${h.color||'var(--text)'}">${h.name}</div>
+        <div class="h-meta">${t.freq}${h.goal?' · '+h.goal:''}</div>
+      </div>
+      <div class="h-right" style="flex-direction:row;gap:6px;">
+        <button class="edit-btn" onclick="openEdit('${h.id}')">✏️</button>
+        <button class="edit-btn" style="border-color:var(--red);color:var(--red);" onclick="deleteTask('${h.id}')">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+// ── MODAL ──
+window.openModal=function(){
+  editId=null;pickedEmoji=EMOJIS[0];pickedColor=COLORS[0];
+  document.getElementById('modalTitle').textContent='Add Task';
+  document.getElementById('hName').value='';
+  document.getElementById('hFreq').value='daily';
+  document.getElementById('hGoal').value='';
+  buildEmojiGrid();buildColorGrid();
+  document.getElementById('modalBtns').innerHTML=`<button class="btn-cancel" onclick="closeModal()">Cancel</button><button class="btn-save" onclick="saveTask()">Save Task</button>`;
+  document.getElementById('overlay').classList.add('open');
+  setTimeout(()=>document.getElementById('hName').focus(),300);
+};
+
+window.openEdit=function(id){
+  const h=S.tasks.find(x=>x.id===id);if(!h)return;
+  editId=id;pickedEmoji=h.emoji;pickedColor=h.color||COLORS[0];
+  document.getElementById('modalTitle').textContent='Edit Task';
+  document.getElementById('hName').value=h.name;
+  document.getElementById('hFreq').value=h.freq;
+  document.getElementById('hGoal').value=h.goal||'';
+  buildEmojiGrid();buildColorGrid();
+  document.getElementById('modalBtns').innerHTML=`<button class="btn-delete" onclick="deleteTask('${id}')">🗑 Delete</button><button class="btn-cancel" onclick="closeModal()">Cancel</button><button class="btn-save" onclick="saveTask()">Update</button>`;
+  document.getElementById('overlay').classList.add('open');
+};
+
+function buildEmojiGrid(){document.getElementById('emojiGrid').innerHTML=EMOJIS.map(e=>`<div class="e-opt ${e===pickedEmoji?'sel':''}" onclick="pickEmoji('${e}')">${e}</div>`).join('');}
+function buildColorGrid(){document.getElementById('colorGrid').innerHTML=COLORS.map(c=>`<div class="c-opt ${c===pickedColor?'sel':''}" style="background:${c};" onclick="pickColor('${c}')"></div>`).join('');}
+
+window.pickEmoji=function(e){pickedEmoji=e;document.querySelectorAll('.e-opt').forEach(el=>el.classList.toggle('sel',el.textContent===e));};
+window.pickColor=function(c){pickedColor=c;document.querySelectorAll('.c-opt').forEach(el=>{el.classList.toggle('sel',el.style.background===c||el.style.backgroundColor===c);});};
+
+window.saveTask=function(){
+  const name=document.getElementById('hName').value.trim();
+  if(!name){showToast('⚠️ Task ka naam likho!');return;}
+  if(editId){
+    const h=S.tasks.find(x=>x.id===editId);
+    if(h){h.name=name;h.emoji=pickedEmoji;h.color=pickedColor;h.freq=document.getElementById('hFreq').value;h.goal=document.getElementById('hGoal').value.trim();}
+    showToast('✏️ Task update ho gaya!');
+  } else {
+    S.tasks.push({id:'h'+Date.now(),name,emoji:pickedEmoji,color:pickedColor,freq:document.getElementById('hFreq').value,goal:document.getElementById('hGoal').value.trim(),added:dk(today)});
+    showToast('🎯 Naya task add ho gaya!');
+  }
+  scheduleSave();closeModal();render();
+};
+
+window.deleteTask=function(id){
+  if(!confirm('Ye task delete karein?'))return;
+  S.tasks=S.tasks.filter(h=>h.id!==id);
+  scheduleSave();closeModal();render();
+  showToast('🗑 Task delete ho gaya!');
+};
+
+window.closeModal=function(){document.getElementById('overlay').classList.remove('open');editId=null;};
+window.closeOverlay=function(e){if(e.target===document.getElementById('overlay'))closeModal();};
+
+window.switchTab=function(tab){
+  // Interstitial — har 3rd tab switch par
+  tabSwitchCount++;
+  if(tabSwitchCount % 3 === 0) {
+    showInterstitialAd();
+  }
+  document.querySelectorAll('.tab').forEach((t,i)=>{const ts=['daily','weekly','monthly','streaks','manage','profile'];t.classList.toggle('active',ts[i]===tab);});
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+tab).classList.add('active');
+  render();
+};
+
+function renderProfile(){
+  if(!currentUser) return;
+
+  // Avatar
+  const bigWrap = document.getElementById('profileAvatarBig');
+  if(currentUser.photoURL){
+    bigWrap.innerHTML=`<img src="${currentUser.photoURL}" class="profile-avatar-big">`;
+  } else {
+    const initials=(currentUser.displayName||'U').split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase();
+    bigWrap.innerHTML=`<div class="profile-initials-big">${initials}</div>`;
+  }
+
+  // Name & email top card
+  const name = currentUser.displayName || 'User';
+  const email = currentUser.email || '--';
+  document.getElementById('profileName').textContent = name;
+  document.getElementById('profileEmail').textContent = email;
+
+  // Join date from Firebase auth metadata
+  const creationTime = currentUser.metadata && currentUser.metadata.creationTime
+    ? new Date(currentUser.metadata.creationTime) : null;
+  const joinStr = creationTime
+    ? `📅 Joined ${creationTime.getDate()} ${MSHORT[creationTime.getMonth()]} ${creationTime.getFullYear()}`
+    : '📅 Joined --';
+  document.getElementById('profileJoin').textContent = joinStr;
+
+  // Info rows
+  document.getElementById('pName').textContent = name;
+  document.getElementById('pEmail').textContent = email;
+  document.getElementById('pAge').textContent = S.age ? S.age + ' years' : 'Not set';
+
+  if(creationTime){
+    document.getElementById('pJoined').textContent =
+      `${creationTime.getDate()} ${MSHORT[creationTime.getMonth()]} ${creationTime.getFullYear()}`;
+    // Member since X months/years
+    const diff = Math.floor((new Date() - creationTime) / (1000*60*60*24*30));
+    document.getElementById('pSince').textContent =
+      diff < 1 ? 'New member!' :
+      diff < 12 ? diff + ' months' :
+      Math.floor(diff/12) + ' year(s) ' + (diff%12) + ' months';
+  } else {
+    document.getElementById('pJoined').textContent = '--';
+    document.getElementById('pSince').textContent = '--';
+  }
+
+  // Stats
+  const totalTasks = S.tasks.length;
+  let doneTasks = 0;
+  Object.values(S.logs).forEach(dayLog => {
+    Object.values(dayLog).forEach(v => { if(v) doneTasks++; });
+  });
+  const bestStreak = Math.max(0,...S.tasks.map(h=>getBest(h.id)));
+  document.getElementById('pTotalTasks').textContent = totalTasks;
+  document.getElementById('pDoneTasks').textContent = doneTasks;
+  document.getElementById('pBestStreak').textContent = bestStreak;
+}
+
+// Age modal
+window.openAgeModal = function(){
+  document.getElementById('ageInput').value = S.age || '';
+  document.getElementById('ageModal').classList.add('open');
+};
+window.closeAgeModal = function(e){
+  if(e.target === document.getElementById('ageModal'))
+    document.getElementById('ageModal').classList.remove('open');
+};
+window.saveAge = function(){
+  const val = parseInt(document.getElementById('ageInput').value);
+  if(!val || val < 5 || val > 100){ showToast('⚠️ Sahi age daalo (5-100)!'); return; }
+  S.age = val;
+  scheduleSave();
+  document.getElementById('ageModal').classList.remove('open');
+  renderProfile();
+  showToast('🎂 Age save ho gayi!');
+};
+
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400);}
+window.showToast=showToast;
+</script>
+
+</div><!-- END #blogger-wrap -->
